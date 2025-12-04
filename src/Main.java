@@ -1,4 +1,5 @@
 import br.com.alura.api.ChaveAPI;
+import br.com.alura.api.InformacoesClima;
 import br.com.alura.api.InformacoesClimaJson;
 import com.google.gson.Gson;
 
@@ -43,12 +44,11 @@ public class Main {
         //atribuindo o json a uma var do tipo string
         String json = response.body();
         Gson gson = new Gson();
-        InformacoesClimaJson clima = gson.fromJson(json, InformacoesClimaJson.class);
+        InformacoesClimaJson climaJson = gson.fromJson(json, InformacoesClimaJson.class);
+        //System.out.println(climaJson);
+        InformacoesClima informacoesClima = new InformacoesClima(climaJson);
 
-        System.out.println(clima.location().name());
-        System.out.println(clima.location().region());
-        System.out.println(clima.location().country());
-        System.out.println(clima.current().temp_c());
+        System.out.println(informacoesClima);
 
     }
 }
