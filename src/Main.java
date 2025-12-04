@@ -1,4 +1,6 @@
 import br.com.alura.api.ChaveAPI;
+import br.com.alura.api.InformacoesClimaJson;
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.net.URI;
@@ -14,7 +16,7 @@ public class Main {
         //entrada que recebe o parametro para consulta
         System.out.println("Qual cidade deseja consultar o clima? ");
         String cidadeInformada = entrada.nextLine();
-
+        //criei uma classe que guarda a chave api
         ChaveAPI chaveAPI = new ChaveAPI();
 
         String urlRequisicao = "https://api.weatherapi.com/v1/current.json?key=" + chaveAPI.getWeaterChaveAPI() + "&q=" + cidadeInformada ;
@@ -23,14 +25,30 @@ public class Main {
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
+                //aqui foi passado a url dinamica da api
                 .uri(URI.create(urlRequisicao))
                 .build();
 
         HttpResponse<String> response = client
                 .send(request, HttpResponse.BodyHandlers.ofString());
 
-        //validando a saída do response
-        System.out.println(response);
+        //validando a saída do response; se retorna cod 200 = OK
+        //System.out.println(response);
+
+        //validando json
+        //System.out.println(response.body());
+
+        System.out.println();
+
+        //atribuindo o json a uma var do tipo string
+        String json = response.body();
+        Gson gson = new Gson();
+        InformacoesClimaJson clima = gson.fromJson(json, InformacoesClimaJson.class);
+
+        System.out.println(clima.location().name());
+        System.out.println(clima.location().region());
+        System.out.println(clima.location().country());
+        System.out.println(clima.current().temp_c());
 
     }
 }
