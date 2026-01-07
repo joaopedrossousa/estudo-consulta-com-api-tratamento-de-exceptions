@@ -22,7 +22,7 @@ public class Main {
 
         String urlRequisicao = "https://api.weatherapi.com/v1/current.json?key=" + chaveAPI.getWeaterChaveAPI() + "&q=" + cidadeInformada ;
 
-
+          
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
