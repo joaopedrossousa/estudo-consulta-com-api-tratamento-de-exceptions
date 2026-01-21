@@ -3,6 +3,7 @@ import br.com.alura.api.InformacoesClima;
 import br.com.alura.api.InformacoesClimaJson;
 import com.google.gson.Gson;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
 import java.net.http.HttpClient;
@@ -49,6 +50,18 @@ public class Main {
         InformacoesClima informacoesClima = new InformacoesClima(climaJson);
 
         System.out.println(informacoesClima);
+
+        //Classe que "guarda" os dados buscados na api em um arquivo .txt
+        //Classe objeto = new Classe (Nome do Arquivo)
+        FileWriter dadosSalvos = new FileWriter("dadosBusca.txt");
+        //objeto.metodo(classe mãe) > Grava a saída de dados, no caso o toString da classe.
+        dadosSalvos.write(informacoesClima.toString());
+        //encerra
+        dadosSalvos.close();
+
+        
+
+
 
     }
 }

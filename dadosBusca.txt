@@ -1,0 +1,4 @@
+Cidade: Lajeado
+Estado: Rio Grande do Sul
+País: Brazil
+Temperatura: 29.2°C
