@@ -3,6 +3,8 @@ import br.com.alura.api.InformacoesClima;
 import br.com.alura.api.InformacoesClimaJson;
 import com.google.gson.Gson;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URI;
@@ -21,9 +23,9 @@ public class Main {
         //criei uma classe que guarda a chave api
         ChaveAPI chaveAPI = new ChaveAPI();
 
-        String urlRequisicao = "https://api.weatherapi.com/v1/current.json?key=" + chaveAPI.getWeaterChaveAPI() + "&q=" + cidadeInformada ;
+        String urlRequisicao = "https://api.weatherapi.com/v1/current.json?key=" + chaveAPI.getWeaterChaveAPI() + "&q=" + cidadeInformada;
 
-          
+
         HttpClient client = HttpClient.newHttpClient();
 
         HttpRequest request = HttpRequest.newBuilder()
@@ -49,6 +51,7 @@ public class Main {
         //System.out.println(climaJson);
         InformacoesClima informacoesClima = new InformacoesClima(climaJson);
 
+        //saída de dados do convertida do JSON para var locais alocadas na classe mãe
         System.out.println(informacoesClima);
 
         //Classe que "guarda" os dados buscados na api em um arquivo .txt
@@ -59,8 +62,27 @@ public class Main {
         //encerra
         dadosSalvos.close();
 
-        
+        System.out.println();
 
+        System.out.println();
+
+        //realizando a leitura de um arquivo
+        try {
+            //Inicializa a classe e cria um obj
+            File arquivoTeste = new File("testeLeitura.txt");
+            //Inicializa scanner e cria um obj
+            Scanner scanner = new Scanner(arquivoTeste);
+            //loop enquanto houver linha > imprima linha;
+            while (scanner.hasNextLine()){
+                //variavel linha recebe scanner
+                String linha = scanner.nextLine();
+                //imprime string
+                System.out.println(linha);
+            }
+
+        }catch (FileNotFoundException e){
+            System.out.println("Arquivo não encontrado... :(");
+        }
 
 
     }

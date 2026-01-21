@@ -1,4 +1,4 @@
-Cidade: Lajeado
-Estado: Rio Grande do Sul
+Cidade: Miracema Do Tocantins
+Estado: Tocantins
 País: Brazil
-Temperatura: 29.2°C
+Temperatura: 23.4°C

@@ -1,0 +1,4 @@
+--------------------------------------------------------------------------------
+Sistema de consulta de clima e informações geográficas, utilizando dados da API WeatherAPI.
+© 2026 João Pedro Sousa
+--------------------------------------------------------------------------------
